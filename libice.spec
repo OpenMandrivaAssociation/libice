@@ -2,16 +2,16 @@
 Name: libice
 Summary:  X Inter Client Exchange Library
 Version: 1.0.4
-Release: %mkrel 2
+Release: %mkrel 3
 Group: Development/X11
 License: MIT
 URL: http://xorg.freedesktop.org
 Source0: http://xorg.freedesktop.org/releases/individual/lib/libICE-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-root
 
-BuildRequires: x11-proto-devel >= 1.0.0
-BuildRequires: x11-util-macros >= 1.0.1
-BuildRequires: x11-xtrans-devel >= 1.0.0
+BuildRequires: x11-xtrans-devel		>= 1.0.4
+BuildRequires: x11-proto-devel		>= 7.3
+BuildRequires: x11-util-macros		>= 1.1.5
 
 %description
 libice provides an interface to ICE, the Inter-Client Exchange protocol.
@@ -110,5 +110,3 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %{_libdir}/libICE.so.6
 %{_libdir}/libICE.so.6.3.0
-
-
