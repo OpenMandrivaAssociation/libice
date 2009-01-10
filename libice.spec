@@ -1,8 +1,8 @@
 %define libice %mklibname ice 6
 Name: libice
 Summary:  X Inter Client Exchange Library
-Version: 1.0.4
-Release: %mkrel 5
+Version: 1.0.5
+Release: %mkrel 1
 Group: Development/X11
 License: MIT
 URL: http://xorg.freedesktop.org
