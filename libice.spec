@@ -99,6 +99,7 @@ Static development files for %{name}
 %install
 rm -rf %{buildroot}
 %makeinstall_std
+mv %{buildroot}/%_datadir/doc/lib{ICE,ice}
 
 %clean
 rm -rf %{buildroot}
@@ -114,3 +115,4 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %{_libdir}/libICE.so.6
 %{_libdir}/libICE.so.6.3.0
+%{_datadir}/doc/libice
