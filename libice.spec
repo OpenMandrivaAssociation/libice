@@ -51,11 +51,6 @@ Conflicts: libxorg-x11-devel < 7.0
 %description -n %{develname}
 Development files for %{name}
 
-%pre -n %{develname}
-if [ -h %{_includedir}/X11 ]; then
-	rm -f %{_includedir}/X11
-fi
-
 %prep
 %setup -q -n libICE-%{version}
 
@@ -71,6 +66,11 @@ fi
 rm -rf %{buildroot}
 %makeinstall_std
 mv %{buildroot}/%_datadir/doc/lib{ICE,ice}
+
+%pre -n %{develname}
+if [ -h %{_includedir}/X11 ]; then
+	rm -f %{_includedir}/X11
+fi
 
 %files -n %{libname}
 %{_libdir}/libICE.so.%{major}*
