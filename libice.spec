@@ -5,7 +5,7 @@
 Name: libice
 Summary:  X Inter Client Exchange Library
 Version: 1.0.8
-Release: 1
+Release: 2
 Group: Development/X11
 License: MIT
 URL: http://xorg.freedesktop.org
@@ -66,11 +66,6 @@ Development files for %{name}
 rm -rf %{buildroot}
 %makeinstall_std
 mv %{buildroot}/%_datadir/doc/lib{ICE,ice}
-
-%pre -n %{develname}
-if [ -h %{_includedir}/X11 ]; then
-	rm -f %{_includedir}/X11
-fi
 
 %files -n %{libname}
 %{_libdir}/libICE.so.%{major}*
