@@ -10,7 +10,6 @@ Group:		Development/X11
 License:	MIT
 Url:		http://xorg.freedesktop.org
 Source0:	ftp://xorg.freedesktop.org/pub/individual/lib/libICE-%{version}.tar.bz2
-Patch0:		libice-aarch64.patch
 
 BuildRequires:	pkgconfig(xproto)
 BuildRequires:	pkgconfig(xorg-macros)
