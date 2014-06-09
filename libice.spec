@@ -1,11 +1,11 @@
-%define major	6
-%define libname	%mklibname ice %{major}
-%define devname	%mklibname ice -d
+%define major 6
+%define libname %mklibname ice %{major}
+%define devname %mklibname ice -d
 
 Name:		libice
 Summary:	X Inter Client Exchange Library
-Version:	1.0.8
-Release:	11
+Version:	1.0.9
+Release:	1
 Group:		Development/X11
 License:	MIT
 Url:		http://xorg.freedesktop.org
@@ -48,14 +48,14 @@ Obsoletes:	%{_lib}ice6-devel < 1.0.8
 Obsoletes:	%{_lib}ice-static-devel < 1.0.8
 
 %description -n %{devname}
-Development files for %{name}
+Development files for %{name}.
 
 %prep
 %setup -qn libICE-%{version}
 %apply_patches
 
 %build
-%configure2_5x \
+%configure \
 	--disable-static \
 	--x-includes=%{_includedir}\
 	--x-libraries=%{_libdir}
