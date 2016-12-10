@@ -1,0 +1,107 @@
+From b1720edc9b9f3e7a05caa3fcd81761e5818ea255 Mon Sep 17 00:00:00 2001
+From: Remko van der Vossen <bugs@yuugen.jp>
+Date: Sun, 19 Jul 2015 08:34:11 -0700
+Subject: [PATCH 2/3] Bug 90616 - libICE build fails on array bounds check
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90616
+
+Recent versions of gcc have array bounds checking turned on by default,
+this leads to build failures of libICE. As the _IceVersionCount variable
+in ICElibint.h is not declared const the compiler cannot assume that the
+nested for loop in ProcessConnectionSetup stays within bounds.
+
+The simple fix is of course to change the declarations of _IceVersionCount,
+_IceVersions, and the local variable myVersionCount to const declarations.
+
+Reviewed-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+---
+ src/ICElibint.h | 32 ++++++++++++++++----------------
+ src/process.c   | 10 +++++-----
+ 2 files changed, 21 insertions(+), 21 deletions(-)
+
+diff --git a/src/ICElibint.h b/src/ICElibint.h
+index 86a5406..b4f8db5 100644
+--- a/src/ICElibint.h
++++ b/src/ICElibint.h
+@@ -334,28 +334,28 @@ typedef struct _IceWatchProc {
+  * Extern declarations
+  */
+ 
+-extern IceConn     	_IceConnectionObjs[];
+-extern char	    	*_IceConnectionStrings[];
+-extern int     		_IceConnectionCount;
++extern IceConn			_IceConnectionObjs[];
++extern char			*_IceConnectionStrings[];
++extern int			_IceConnectionCount;
+ 
+-extern _IceProtocol	_IceProtocols[];
+-extern int         	_IceLastMajorOpcode;
++extern _IceProtocol		_IceProtocols[];
++extern int			_IceLastMajorOpcode;
+ 
+-extern int		_IceAuthCount;
+-extern const char	*_IceAuthNames[];
+-extern IcePoAuthProc	_IcePoAuthProcs[];
+-extern IcePaAuthProc	_IcePaAuthProcs[];
++extern int			_IceAuthCount;
++extern const char		*_IceAuthNames[];
++extern IcePoAuthProc		_IcePoAuthProcs[];
++extern IcePaAuthProc		_IcePaAuthProcs[];
+ 
+-extern int		_IceVersionCount;
+-extern _IceVersion	_IceVersions[];
++extern const int		_IceVersionCount;
++extern const _IceVersion	_IceVersions[];
+ 
+-extern _IceWatchProc	*_IceWatchProcs;
++extern _IceWatchProc		*_IceWatchProcs;
+ 
+-extern IceErrorHandler   _IceErrorHandler;
+-extern IceIOErrorHandler _IceIOErrorHandler;
++extern IceErrorHandler		_IceErrorHandler;
++extern IceIOErrorHandler	_IceIOErrorHandler;
+ 
+-extern IceAuthDataEntry	 _IcePaAuthDataEntries[];
+-extern int		 _IcePaAuthDataEntryCount;
++extern IceAuthDataEntry		_IcePaAuthDataEntries[];
++extern int			_IcePaAuthDataEntryCount;
+ 
+ extern void _IceErrorBadMajor (
+     IceConn		/* iceConn */,
+diff --git a/src/process.c b/src/process.c
+index f0c3369..4100a83 100644
+--- a/src/process.c
++++ b/src/process.c
+@@ -856,7 +856,8 @@ ProcessConnectionSetup (
+ )
+ {
+     iceConnectionSetupMsg *message;
+-    int  myVersionCount, hisVersionCount;
++    const int myVersionCount = _IceVersionCount;
++    int  hisVersionCount;
+     int	 myVersionIndex, hisVersionIndex;
+     int  hisMajorVersion, hisMinorVersion;
+     int	 myAuthCount, hisAuthCount;
+@@ -926,7 +927,6 @@ ProcessConnectionSetup (
+     }
+ 
+     hisVersionCount = message->versionCount;
+-    myVersionCount = _IceVersionCount;
+ 
+     hisVersionIndex = myVersionIndex = found = 0;
+ 
+@@ -2551,7 +2551,7 @@ _IceProcessCoreMessage (
+ 	*replyReadyRet = replyReady;
+ }
+ 
+-int		_IceVersionCount = 1;
+-_IceVersion	_IceVersions[] = {
+-		    {IceProtoMajor, IceProtoMinor, _IceProcessCoreMessage}};
++const int		_IceVersionCount = 1;
++const _IceVersion	_IceVersions[] = {
++			    {IceProtoMajor, IceProtoMinor, _IceProcessCoreMessage}};
+ 
+-- 
+2.8.3
+
