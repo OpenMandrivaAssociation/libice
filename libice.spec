@@ -5,12 +5,15 @@
 Name:		libice
 Summary:	X Inter Client Exchange Library
 Version:	1.0.9
-Release:	7
+Release:	8
 Group:		Development/X11
 License:	MIT
 Url:		http://xorg.freedesktop.org
 Source0:	ftp://xorg.freedesktop.org/pub/individual/lib/libICE-%{version}.tar.bz2
-
+Patch0:		0000-spec-Convert-troff-Q.-U-to-DocBook-quote-.-quote.patch
+Patch1:		0001-Include-unistd.h-for-getpid.patch
+Patch2:		0002-Bug-90616-libICE-build-fails-on-array-bounds-check.patch
+Patch3:		0003-Fix-use-after-free-on-subsequent-calls.patch
 BuildRequires:	pkgconfig(xproto)
 BuildRequires:	pkgconfig(xorg-macros)
 BuildRequires:	pkgconfig(xtrans)
