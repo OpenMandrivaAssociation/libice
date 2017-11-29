@@ -5,7 +5,7 @@
 Name:		libice
 Summary:	X Inter Client Exchange Library
 Version:	1.0.9
-Release:	8
+Release:	9
 Group:		Development/X11
 License:	MIT
 Url:		http://xorg.freedesktop.org
@@ -17,6 +17,7 @@ Patch3:		0003-Fix-use-after-free-on-subsequent-calls.patch
 BuildRequires:	pkgconfig(xproto)
 BuildRequires:	pkgconfig(xorg-macros)
 BuildRequires:	pkgconfig(xtrans)
+BuildRequires:	pkgconfig(libbsd)
 
 %description
 libice provides an interface to ICE, the Inter-Client Exchange protocol.
