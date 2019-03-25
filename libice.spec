@@ -2,10 +2,12 @@
 %define libname %mklibname ice %{major}
 %define devname %mklibname ice -d
 
+%global optflags %{optflags} -O3
+
 Name:		libice
 Summary:	X Inter Client Exchange Library
 Version:	1.0.9
-Release:	10
+Release:	11
 Group:		Development/X11
 License:	MIT
 Url:		http://xorg.freedesktop.org
@@ -54,8 +56,7 @@ Obsoletes:	%{_lib}ice-static-devel < 1.0.8
 Development files for %{name}.
 
 %prep
-%setup -qn libICE-%{version}
-%apply_patches
+%autosetup -n libICE-%{version} -p1
 
 %build
 %configure \
@@ -63,10 +64,10 @@ Development files for %{name}.
 	--x-includes=%{_includedir}\
 	--x-libraries=%{_libdir}
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 mv %{buildroot}/%{_datadir}/doc/lib{ICE,ice}
 
 %files -n %{libname}
@@ -82,4 +83,3 @@ mv %{buildroot}/%{_datadir}/doc/lib{ICE,ice}
 %{_includedir}/X11/ICE/ICEconn.h
 %{_includedir}/X11/ICE/ICElib.h
 %{_includedir}/X11/ICE/ICEmsg.h
-
