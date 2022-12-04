@@ -13,16 +13,14 @@
 %define dev32name libice-devel
 %endif
 
-%global optflags %{optflags} -O3
-
 Name:		libice
 Summary:	X Inter Client Exchange Library
-Version:	1.0.10
-Release:	2
+Version:	1.1.0
+Release:	1
 Group:		Development/X11
 License:	MIT
 Url:		http://xorg.freedesktop.org
-Source0:	http://xorg.freedesktop.org/releases/individual/lib/libICE-%{version}.tar.bz2
+Source0:	http://xorg.freedesktop.org/releases/individual/lib/libICE-%{version}.tar.xz
 BuildRequires:	pkgconfig(xproto)
 BuildRequires:	pkgconfig(xorg-macros)
 BuildRequires:	pkgconfig(xtrans)
