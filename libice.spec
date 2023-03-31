@@ -16,7 +16,7 @@
 Name:		libice
 Summary:	X Inter Client Exchange Library
 Version:	1.1.1
-Release:	1
+Release:	2
 Group:		Development/X11
 License:	MIT
 Url:		http://xorg.freedesktop.org
