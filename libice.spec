@@ -15,12 +15,12 @@
 
 Name:		libice
 Summary:	X Inter Client Exchange Library
-Version:	1.1.1
-Release:	2
+Version:	1.1.2
+Release:	1
 Group:		Development/X11
 License:	MIT
 Url:		https://xorg.freedesktop.org
-Source0:	http://xorg.freedesktop.org/releases/individual/lib/libICE-%{version}.tar.xz
+Source0:	https://xorg.freedesktop.org/releases/individual/lib/libICE-%{version}.tar.xz
 BuildRequires:	pkgconfig(xproto)
 BuildRequires:	pkgconfig(xorg-macros)
 BuildRequires:	pkgconfig(xtrans)
