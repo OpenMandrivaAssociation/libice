@@ -21,6 +21,11 @@ Group:		Development/X11
 License:	MIT
 Url:		https://xorg.freedesktop.org
 Source0:	https://xorg.freedesktop.org/releases/individual/lib/libICE-%{version}.tar.xz
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(xproto)
 BuildRequires:	pkgconfig(xorg-macros)
 BuildRequires:	pkgconfig(xtrans)
